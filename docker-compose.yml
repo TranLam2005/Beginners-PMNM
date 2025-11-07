@@ -20,7 +20,7 @@ services:
     volumes:
       - ./backend/mlruns:/app/mlruns:rw
     environment:
-      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-appdb}
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-123456789}@host.docker.internal:5432/${POSTGRES_DB:-postgres}
       CELERY_BROKER_URL: amqp://guest:guest@host.docker.internal:5672//
       CELERY_RESULT_BACKEND: rpc://
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
     depends_on: [db]
     environment:
-      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-appdb}
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-123456789}@host.docker.internal:5432/${POSTGRES_DB:-postgres}
       CELERY_BROKER_URL: amqp://guest:guest@host.docker.internal:5672//
       CELERY_RESULT_BACKEND: rpc://
     # Prod không cần watchmedo, dev sẽ override
